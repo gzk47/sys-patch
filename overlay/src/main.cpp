@@ -120,7 +120,7 @@ public:
         list->addItem(config_ctest2.create_list_item("连接测试(ctest2)"));
 
         list->addItem(new tsl::elm::CategoryHeader("网络安装管理(NIM) - 0100000000000025"));
-        list->addItem(config_nim.create_list_item("旧版网络安装管理(nim)"));
+        list->addItem(config_nim_old.create_list_item("旧版网络安装管理(nim)"));
         list->addItem(config_nim_new.create_list_item("新版网络安装管理(nim)"));
 
         list->addItem(new tsl::elm::CategoryHeader("禁用CA验证-全部应用"));
