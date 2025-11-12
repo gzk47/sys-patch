@@ -71,14 +71,14 @@ public:
     GuiOptions() { }
 
     tsl::elm::Element* createUI() override {
-        auto frame = new tsl::elm::OverlayFrame("ÏµÍ³²¹¶¡", VERSION_WITH_HASH);
+        auto frame = new tsl::elm::OverlayFrame("ç³»ç»Ÿè¡¥ä¸", VERSION_WITH_HASH);
         auto list = new tsl::elm::List();
 
-        list->addItem(new tsl::elm::CategoryHeader("Ñ¡Ïî"));
-        list->addItem(config_patch_sysmmc.create_list_item("ÐÞ²¹ ÕæÊµÏµÍ³"));
-        list->addItem(config_patch_emummc.create_list_item("ÐÞ²¹ ÐéÄâÏµÍ³"));
-        list->addItem(config_logging.create_list_item("ÆôÓÃÈÕÖ¾¼ÇÂ¼"));
-        list->addItem(config_version_skip.create_list_item("Ìø¹ý°æ±¾¼ì²â"));
+        list->addItem(new tsl::elm::CategoryHeader("é€‰é¡¹"));
+        list->addItem(config_patch_sysmmc.create_list_item("ä¿®è¡¥ çœŸå®žç³»ç»Ÿ"));
+        list->addItem(config_patch_emummc.create_list_item("ä¿®è¡¥ è™šæ‹Ÿç³»ç»Ÿ"));
+        list->addItem(config_logging.create_list_item("å¯ç”¨æ—¥å¿—è®°å½•"));
+        list->addItem(config_version_skip.create_list_item("è·³è¿‡ç‰ˆæœ¬æ£€æµ‹"));
 
         frame->setContent(list);
         return frame;
@@ -95,38 +95,38 @@ public:
     GuiToggle() { }
 
     tsl::elm::Element* createUI() override {
-        auto frame = new tsl::elm::OverlayFrame("ÏµÍ³²¹¶¡", VERSION_WITH_HASH);
+        auto frame = new tsl::elm::OverlayFrame("ç³»ç»Ÿè¡¥ä¸", VERSION_WITH_HASH);
         auto list = new tsl::elm::List();
 
-        list->addItem(new tsl::elm::CategoryHeader("ÎÄ¼þÏµÍ³(FS) - 0100000000000000"));
-        list->addItem(config_noacidsigchk1.create_list_item("¹Ø±ÕACIDÇ©ÃûÑéÖ¤1"));
-        list->addItem(config_noacidsigchk2.create_list_item("¹Ø±ÕACIDÇ©ÃûÑéÖ¤2"));
-        list->addItem(config_noncasigchk_old.create_list_item("¹Ø±Õ¾É°æNCAÇ©ÃûÑéÖ¤"));
-        list->addItem(config_noncasigchk_old2.create_list_item("¹Ø±Õ¾É°æNCAÇ©ÃûÑéÖ¤2"));
-        list->addItem(config_noncasigchk_new.create_list_item("¹Ø±ÕÐÂ°æNCAÇ©ÃûÑéÖ¤"));
-        list->addItem(config_nocntchk.create_list_item("¹Ø±ÕCNTÑéÖ¤"));
-        list->addItem(config_nocntchk2.create_list_item("¹Ø±ÕCNTÑéÖ¤2"));
+        list->addItem(new tsl::elm::CategoryHeader("æ–‡ä»¶ç³»ç»Ÿ(FS) - 0100000000000000"));
+        list->addItem(config_noacidsigchk1.create_list_item("å…³é—­ACIDç­¾åéªŒè¯1"));
+        list->addItem(config_noacidsigchk2.create_list_item("å…³é—­ACIDç­¾åéªŒè¯2"));
+        list->addItem(config_noncasigchk_old.create_list_item("å…³é—­æ—§ç‰ˆNCAç­¾åéªŒè¯"));
+        list->addItem(config_noncasigchk_old2.create_list_item("å…³é—­æ—§ç‰ˆNCAç­¾åéªŒè¯2"));
+        list->addItem(config_noncasigchk_new.create_list_item("å…³é—­æ–°ç‰ˆNCAç­¾åéªŒè¯"));
+        list->addItem(config_nocntchk.create_list_item("å…³é—­CNTéªŒè¯"));
+        list->addItem(config_nocntchk2.create_list_item("å…³é—­CNTéªŒè¯2"));
 
-        list->addItem(new tsl::elm::CategoryHeader("¼ÓÔØÆ÷(LDR) - 0100000000000001"));
-        list->addItem(config_noacidsigchk.create_list_item("¹Ø±ÕACIDÇ©ÃûÑéÖ¤"));
+        list->addItem(new tsl::elm::CategoryHeader("åŠ è½½å™¨(LDR) - 0100000000000001"));
+        list->addItem(config_noacidsigchk.create_list_item("å…³é—­ACIDç­¾åéªŒè¯"));
 
-        list->addItem(new tsl::elm::CategoryHeader("¼ÓÃÜ·þÎñ(ES) - 0100000000000033"));
-        list->addItem(config_es1.create_list_item("¼ÓÃÜ·þÎñ(es1)"));
-        list->addItem(config_es2.create_list_item("¼ÓÃÜ·þÎñ(es2)"));
-        list->addItem(config_es3.create_list_item("¼ÓÃÜ·þÎñ(es3)"));
+        list->addItem(new tsl::elm::CategoryHeader("åŠ å¯†æœåŠ¡(ES) - 0100000000000033"));
+        list->addItem(config_es1.create_list_item("åŠ å¯†æœåŠ¡(es1)"));
+        list->addItem(config_es2.create_list_item("åŠ å¯†æœåŠ¡(es2)"));
+        list->addItem(config_es3.create_list_item("åŠ å¯†æœåŠ¡(es3)"));
 
-        list->addItem(new tsl::elm::CategoryHeader("ÍøÂç½Ó¿Ú¹ÜÀí(NIFM) - 010000000000000F"));
-        list->addItem(config_ctest.create_list_item("Á¬½Ó²âÊÔ(ctest)"));
-        list->addItem(config_ctest2.create_list_item("Á¬½Ó²âÊÔ(ctest2)"));
+        list->addItem(new tsl::elm::CategoryHeader("ç½‘ç»œæŽ¥å£ç®¡ç†(NIFM) - 010000000000000F"));
+        list->addItem(config_ctest.create_list_item("è¿žæŽ¥æµ‹è¯•(ctest)"));
+        list->addItem(config_ctest2.create_list_item("è¿žæŽ¥æµ‹è¯•(ctest2)"));
 
-        list->addItem(new tsl::elm::CategoryHeader("ÍøÂç°²×°¹ÜÀí(NIM) - 0100000000000025"));
-        list->addItem(config_nim.create_list_item("¾É°æÍøÂç°²×°¹ÜÀí(nim)"));
-        list->addItem(config_nim_new.create_list_item("ÐÂ°æÍøÂç°²×°¹ÜÀí(nim)"));
+        list->addItem(new tsl::elm::CategoryHeader("ç½‘ç»œå®‰è£…ç®¡ç†(NIM) - 0100000000000025"));
+        list->addItem(config_nim.create_list_item("æ—§ç‰ˆç½‘ç»œå®‰è£…ç®¡ç†(nim)"));
+        list->addItem(config_nim_new.create_list_item("æ–°ç‰ˆç½‘ç»œå®‰è£…ç®¡ç†(nim)"));
 
-        list->addItem(new tsl::elm::CategoryHeader("½ûÓÃCAÑéÖ¤-È«²¿Ó¦ÓÃ"));
-        list->addItem(config_ssl1.create_list_item("½ûÓÃCAÑéÖ¤1"));
-        list->addItem(config_ssl2.create_list_item("½ûÓÃCAÑéÖ¤2"));
-        list->addItem(config_ssl3.create_list_item("½ûÓÃCAÑéÖ¤3"));
+        list->addItem(new tsl::elm::CategoryHeader("ç¦ç”¨CAéªŒè¯-å…¨éƒ¨åº”ç”¨"));
+        list->addItem(config_ssl1.create_list_item("ç¦ç”¨CAéªŒè¯1"));
+        list->addItem(config_ssl2.create_list_item("ç¦ç”¨CAéªŒè¯2"));
+        list->addItem(config_ssl3.create_list_item("ç¦ç”¨CAéªŒè¯3"));
 
         frame->setContent(list);
         return frame;
@@ -157,7 +157,7 @@ public:
     GuiLog() { }
 
     tsl::elm::Element* createUI() override {
-        auto frame = new tsl::elm::OverlayFrame("ÏµÍ³²¹¶¡", VERSION_WITH_HASH);
+        auto frame = new tsl::elm::OverlayFrame("ç³»ç»Ÿè¡¥ä¸", VERSION_WITH_HASH);
         auto list = new tsl::elm::List();
 
         if (does_file_exist(LOG_PATH)) {
@@ -170,13 +170,13 @@ public:
                 auto user = (CallbackUser*)UserData;
                 std::string_view value{Value};
 
-                if (value == "ÒÑÌø¹ý") {
+                if (value == "å·²è·³è¿‡") {
                     return 1;
                 }
 
                 if (user->last_section != Section) {
                     user->last_section = Section;
-                    user->list->addItem(new tsl::elm::CategoryHeader("ÈÕÖ¾£º" + user->last_section));
+                    user->list->addItem(new tsl::elm::CategoryHeader("æ—¥å¿—ï¼š" + user->last_section));
                 }
 
                 #define F(x) ((x) >> 4) // 8bit -> 4bit
@@ -185,13 +185,13 @@ public:
                 constexpr tsl::Color colour_unpatched{F(250), F(90), F(58), F(255)};
                 #undef F
 
-                if (value.starts_with("ÒÑÐÞ²¹")) {
+                if (value.starts_with("å·²ä¿®è¡¥")) {
                     if (value.ends_with("(sys-patch)")) {
-                        user->list->addItem(new tsl::elm::ListItem(Key, "ÒÑÐÞ²¹", colour_syspatch));
+                        user->list->addItem(new tsl::elm::ListItem(Key, "å·²ä¿®è¡¥", colour_syspatch));
                     } else {
-                        user->list->addItem(new tsl::elm::ListItem(Key, "ÒÑÐÞ²¹", colour_file));
+                        user->list->addItem(new tsl::elm::ListItem(Key, "å·²ä¿®è¡¥", colour_file));
                     }
-                } else if (value.starts_with("Î´ÐÞ²¹") || value.starts_with("ÒÑ½ûÓÃ")) {
+                } else if (value.starts_with("æœªä¿®è¡¥") || value.starts_with("å·²ç¦ç”¨")) {
                     user->list->addItem(new tsl::elm::ListItem(Key, Value, colour_unpatched));
                 } else if (user->last_section == "stats") {
                     user->list->addItem(new tsl::elm::ListItem(Key, Value, tsl::style::color::ColorDescription));
@@ -202,7 +202,7 @@ public:
                 return 1;
             }, &callback_userdata, LOG_PATH);
         } else {
-            list->addItem(new tsl::elm::ListItem("Î´ÕÒµ½ÈÕÖ¾£¡"));
+            list->addItem(new tsl::elm::ListItem("æœªæ‰¾åˆ°æ—¥å¿—ï¼"));
         }
 
         frame->setContent(list);
@@ -215,12 +215,12 @@ public:
     GuiMain() { }
 
     tsl::elm::Element* createUI() override {
-        auto frame = new tsl::elm::OverlayFrame("ÏµÍ³²¹¶¡", VERSION_WITH_HASH);
+        auto frame = new tsl::elm::OverlayFrame("ç³»ç»Ÿè¡¥ä¸", VERSION_WITH_HASH);
         auto list = new tsl::elm::List();
 
-        auto options = new tsl::elm::ListItem("ÉèÖÃÑ¡Ïî");
-        auto toggle = new tsl::elm::ListItem("ÇÐ»»²¹¶¡×´Ì¬");
-        auto log = new tsl::elm::ListItem("²é¿´ÈÕÖ¾");
+        auto options = new tsl::elm::ListItem("è®¾ç½®é€‰é¡¹");
+        auto toggle = new tsl::elm::ListItem("åˆ‡æ¢è¡¥ä¸çŠ¶æ€");
+        auto log = new tsl::elm::ListItem("æŸ¥çœ‹æ—¥å¿—");
 
         options->setClickListener([](u64 keys) -> bool {
             if (keys & HidNpadButton_A) {
@@ -246,7 +246,7 @@ public:
             return false;
         });
 
-        list->addItem(new tsl::elm::CategoryHeader("²Ëµ¥"));
+        list->addItem(new tsl::elm::CategoryHeader("èœå•"));
         list->addItem(options);
         list->addItem(toggle);
         list->addItem(log);

@@ -264,39 +264,39 @@ constexpr auto ctest_applied(const u8* data, u32 inst) -> bool {
 }
 
 constinit Patterns fs_patterns[] = {
-    { "¹Ø±ÕACIDÇ©ÃûÑéÖ¤1", "0xC8FE4739", -24, 0, bl_cond, ret0_patch, ret0_applied, true, FW_VER_ANY, MAKEHOSVERSION(9,2,0) },
-    { "¹Ø±ÕACIDÇ©ÃûÑéÖ¤2", "0x0210911F000072", -5, 0, bl_cond, ret0_patch, ret0_applied, true, FW_VER_ANY, MAKEHOSVERSION(9,2,0) },
-    { "¹Ø±Õ¾É°æNCAÇ©ÃûÑéÖ¤", "0x0036.......71..0054..4839", -2, 0, tbz_cond, nop_patch, nop_applied, true, MAKEHOSVERSION(10,0,0), MAKEHOSVERSION(16,1,0) },
-    { "¹Ø±Õ¾É°æNCAÇ©ÃûÑéÖ¤2", "0x.94..0036.258052", 2, 0, tbz_cond, nop_patch, nop_applied, true, MAKEHOSVERSION(17,0,0), MAKEHOSVERSION(20,5,0) }, // 17.0.0 - 20.5.0
-    { "¹Ø±ÕĞÂ°æNCAÇ©ÃûÑéÖ¤", "0x.94..0036.........258052", 2, 0, tbz_cond, nop_patch, nop_applied, true, MAKEHOSVERSION(21,0,0), FW_VER_ANY }, // 21.0.0+
-    { "¹Ø±ÕCNTÑéÖ¤", "0x40f9...9408.0012.050071", 2, 0, bl_cond, ret0_patch, ret0_applied, true, MAKEHOSVERSION(10,0,0), MAKEHOSVERSION(18,1,0) },
-    { "¹Ø±ÕCNTÑéÖ¤2", "0x40f9...94..40b9..0012", 2, 0, bl_cond, ret0_patch, ret0_applied, true, MAKEHOSVERSION(19,0,0), FW_VER_ANY },
+    { "å…³é—­ACIDç­¾åéªŒè¯1", "0xC8FE4739", -24, 0, bl_cond, ret0_patch, ret0_applied, true, FW_VER_ANY, MAKEHOSVERSION(9,2,0) },
+    { "å…³é—­ACIDç­¾åéªŒè¯2", "0x0210911F000072", -5, 0, bl_cond, ret0_patch, ret0_applied, true, FW_VER_ANY, MAKEHOSVERSION(9,2,0) },
+    { "å…³é—­æ—§ç‰ˆNCAç­¾åéªŒè¯", "0x0036.......71..0054..4839", -2, 0, tbz_cond, nop_patch, nop_applied, true, MAKEHOSVERSION(10,0,0), MAKEHOSVERSION(16,1,0) },
+    { "å…³é—­æ—§ç‰ˆNCAç­¾åéªŒè¯2", "0x.94..0036.258052", 2, 0, tbz_cond, nop_patch, nop_applied, true, MAKEHOSVERSION(17,0,0), MAKEHOSVERSION(20,5,0) }, // 17.0.0 - 20.5.0
+    { "å…³é—­æ–°ç‰ˆNCAç­¾åéªŒè¯", "0x.94..0036.........258052", 2, 0, tbz_cond, nop_patch, nop_applied, true, MAKEHOSVERSION(21,0,0), FW_VER_ANY }, // 21.0.0+
+    { "å…³é—­CNTéªŒè¯", "0x40f9...9408.0012.050071", 2, 0, bl_cond, ret0_patch, ret0_applied, true, MAKEHOSVERSION(10,0,0), MAKEHOSVERSION(18,1,0) },
+    { "å…³é—­CNTéªŒè¯2", "0x40f9...94..40b9..0012", 2, 0, bl_cond, ret0_patch, ret0_applied, true, MAKEHOSVERSION(19,0,0), FW_VER_ANY },
 };
 
 constinit Patterns ldr_patterns[] = {
-    { "¹Ø±ÕACIDÇ©ÃûÑéÖ¤", "17..009401C0BE121F00", 9, 2, cmp_cond, cmp_patch, cmp_applied, true, FW_VER_ANY }, // 1F00016B - cmp w0, w1 patched to 1F00006B - cmp w0, w0
+    { "å…³é—­ACIDç­¾åéªŒè¯", "17..009401C0BE121F00", 9, 2, cmp_cond, cmp_patch, cmp_applied, true, FW_VER_ANY }, // 1F00016B - cmp w0, w1 patched to 1F00006B - cmp w0, w0
 };
 
 constinit Patterns es_patterns[] = {
-    { "¼ÓÃÜ·şÎñ(es1)", "0x..00.....e0.0091..0094..4092...d1", 16, 0, and_cond, mov0_patch, mov0_applied, true, FW_VER_ANY, MAKEHOSVERSION(1,0,0) },
-    { "¼ÓÃÜ·şÎñ(es2)", "0x..00.....e0.0091..0094..4092...a9", 16, 0, and_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(2,0,0), MAKEHOSVERSION(8,1,1) },
-    { "¼ÓÃÜ·şÎñ(es3)", "0x..00...0094a0..d1..ff97.......a9", 16, 0, mov2_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(9,0,0), FW_VER_ANY }, //9.0.0 - 19.0.0+
+    { "åŠ å¯†æœåŠ¡(es1)", "0x..00.....e0.0091..0094..4092...d1", 16, 0, and_cond, mov0_patch, mov0_applied, true, FW_VER_ANY, MAKEHOSVERSION(1,0,0) },
+    { "åŠ å¯†æœåŠ¡(es2)", "0x..00.....e0.0091..0094..4092...a9", 16, 0, and_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(2,0,0), MAKEHOSVERSION(8,1,1) },
+    { "åŠ å¯†æœåŠ¡(es3)", "0x..00...0094a0..d1..ff97.......a9", 16, 0, mov2_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(9,0,0), FW_VER_ANY }, //9.0.0 - 19.0.0+
 };
 
 constinit Patterns nifm_patterns[] = {
-    { "Á¬½Ó²âÊÔ(ctest)", "....................F40300AA....F30314AAE00314AA9F0201397F8E04F8", 16, -16, ctest_cond, ctest_patch, ctest_applied, true, FW_VER_ANY, MAKEHOSVERSION(18,1,0) }, // 1.0.0 - 18.1.0
-    { "Á¬½Ó²âÊÔ(ctest2)", "14...........91...........97...............14", 37, 4, b_cond, ctest_patch, ctest_applied, true, MAKEHOSVERSION(19,0,0), FW_VER_ANY }, //19.0.0 - 20.0.1+
+    { "è¿æ¥æµ‹è¯•(ctest)", "....................F40300AA....F30314AAE00314AA9F0201397F8E04F8", 16, -16, ctest_cond, ctest_patch, ctest_applied, true, FW_VER_ANY, MAKEHOSVERSION(18,1,0) }, // 1.0.0 - 18.1.0
+    { "è¿æ¥æµ‹è¯•(ctest2)", "14...........91...........97...............14", 37, 4, b_cond, ctest_patch, ctest_applied, true, MAKEHOSVERSION(19,0,0), FW_VER_ANY }, //19.0.0 - 20.0.1+
 };
 
 constinit Patterns nim_patterns[] = {
-    { "¾É°æÍøÂç°²×°¹ÜÀí(nim)", "0x.0F00351F2003D5", 8, 0, adr_cond, mov2_patch, mov2_applied, true, MAKEHOSVERSION(17,0,0), MAKEHOSVERSION(20,5,0) },
-    { "ĞÂ°æÍøÂç°²×°¹ÜÀí(nim)", "0x.0700351F2003D5", 8, 0, adr_cond, mov2_patch, mov2_applied, true, MAKEHOSVERSION(21,0,0), FW_VER_ANY },
+    { "æ—§ç‰ˆç½‘ç»œå®‰è£…ç®¡ç†(nim)", "0x.0F00351F2003D5", 8, 0, adr_cond, mov2_patch, mov2_applied, true, MAKEHOSVERSION(17,0,0), MAKEHOSVERSION(20,5,0) },
+    { "æ–°ç‰ˆç½‘ç»œå®‰è£…ç®¡ç†(nim)", "0x.0700351F2003D5", 8, 0, adr_cond, mov2_patch, mov2_applied, true, MAKEHOSVERSION(21,0,0), FW_VER_ANY },
 };
 
 constinit Patterns ssl_patterns[] = {
-    { "½ûÓÃCAÑéÖ¤1", "0x6A0080D2", 0, 0, mov3_cond, ssl1_patch, ssl1_applied, false, FW_VER_ANY },
-    { "½ûÓÃCAÑéÖ¤2", "0x2409437AA0000054", 4, 0, beq_cond, ret1_patch, ret1_applied, false, FW_VER_ANY },
-    { "½ûÓÃCAÑéÖ¤3", "0x88160012", 4, 0, str_cond, ssl2_patch, ssl2_applied, false, FW_VER_ANY },
+    { "ç¦ç”¨CAéªŒè¯1", "0x6A0080D2", 0, 0, mov3_cond, ssl1_patch, ssl1_applied, false, FW_VER_ANY },
+    { "ç¦ç”¨CAéªŒè¯2", "0x2409437AA0000054", 4, 0, beq_cond, ret1_patch, ret1_applied, false, FW_VER_ANY },
+    { "ç¦ç”¨CAéªŒè¯3", "0x88160012", 4, 0, str_cond, ssl2_patch, ssl2_applied, false, FW_VER_ANY },
 };
 
 // NOTE: add system titles that you want to be patched to this table.
@@ -505,12 +505,12 @@ auto ini_load_or_write_default(const char* section, const char* key, long _defau
 
 auto patch_result_to_str(PatchResult result) -> const char* {
     switch (result) {
-        case PatchResult::NOT_FOUND: return "Î´ĞŞ²¹";
-        case PatchResult::SKIPPED: return "ÒÑÌø¹ı";
-        case PatchResult::DISABLED: return "ÒÑ½ûÓÃ";
-        case PatchResult::PATCHED_FILE: return "ÒÑĞŞ²¹£¨ÎÄ¼ş£©";
-        case PatchResult::PATCHED_SYSPATCH: return "ÒÑĞŞ²¹£¨ÏµÍ³²¹¶¡£©";
-        case PatchResult::FAILED_WRITE: return "Ê§°Ü£¨ÄÚ´æĞ´Èë´íÎó£©";
+        case PatchResult::NOT_FOUND: return "æœªä¿®è¡¥";
+        case PatchResult::SKIPPED: return "å·²è·³è¿‡";
+        case PatchResult::DISABLED: return "å·²ç¦ç”¨";
+        case PatchResult::PATCHED_FILE: return "å·²ä¿®è¡¥ï¼ˆæ–‡ä»¶ï¼‰";
+        case PatchResult::PATCHED_SYSPATCH: return "å·²ä¿®è¡¥ï¼ˆç³»ç»Ÿè¡¥ä¸ï¼‰";
+        case PatchResult::FAILED_WRITE: return "å¤±è´¥ï¼ˆå†…å­˜å†™å…¥é”™è¯¯ï¼‰";
     }
 
     std::unreachable();
@@ -675,18 +675,18 @@ int main(int argc, char* argv[]) {
         // defined in the Makefile
         #define DATE (DATE_DAY "." DATE_MONTH "." DATE_YEAR " " DATE_HOUR ":" DATE_MIN ":" DATE_SEC)
 
-        ini_puts("stats", "°æ±¾", VERSION_WITH_HASH, log_path);
-        ini_puts("stats", "±àÒëÈÕÆÚ", DATE, log_path);
-        ini_puts("stats", "¹Ì¼ş°æ±¾", fw_version, log_path);
-        ini_puts("stats", "´óÆø²ã°æ±¾", ams_version, log_path);
-        ini_puts("stats", "´óÆø²ãÄ¿±ê°æ±¾", ams_target_version, log_path);
-        ini_puts("stats", "´óÆø²ãÃÜÔ¿°æ±¾", ams_keygen, log_path);
-        ini_puts("stats", "´óÆø²ã¹şÏ£Öµ", ams_hash, log_path);
-        ini_putl("stats", "ÊÇ·ñÎªĞéÄâÏµÍ³", emummc, log_path);
-        ini_putl("stats", "¶Ñ´óĞ¡", INNER_HEAP_SIZE, log_path);
-        ini_putl("stats", "»º³åÇø´óĞ¡", READ_BUFFER_SIZE, log_path);
-        ini_puts("stats", "ĞŞ²¹ÓÃÊ±", patch_time, log_path);
-		ini_puts("stats", "ºº»¯", "gzk_47", log_path);
+        ini_puts("stats", "ç‰ˆæœ¬", VERSION_WITH_HASH, log_path);
+        ini_puts("stats", "ç¼–è¯‘æ—¥æœŸ", DATE, log_path);
+        ini_puts("stats", "å›ºä»¶ç‰ˆæœ¬", fw_version, log_path);
+        ini_puts("stats", "å¤§æ°”å±‚ç‰ˆæœ¬", ams_version, log_path);
+        ini_puts("stats", "å¤§æ°”å±‚ç›®æ ‡ç‰ˆæœ¬", ams_target_version, log_path);
+        ini_puts("stats", "å¤§æ°”å±‚å¯†é’¥ç‰ˆæœ¬", ams_keygen, log_path);
+        ini_puts("stats", "å¤§æ°”å±‚å“ˆå¸Œå€¼", ams_hash, log_path);
+        ini_putl("stats", "æ˜¯å¦ä¸ºè™šæ‹Ÿç³»ç»Ÿ", emummc, log_path);
+        ini_putl("stats", "å †å¤§å°", INNER_HEAP_SIZE, log_path);
+        ini_putl("stats", "ç¼“å†²åŒºå¤§å°", READ_BUFFER_SIZE, log_path);
+        ini_puts("stats", "ä¿®è¡¥ç”¨æ—¶", patch_time, log_path);
+		ini_puts("stats", "æ±‰åŒ–", "gzk_47", log_path);
     }
 
     // note: sysmod exits here.
