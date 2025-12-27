@@ -314,7 +314,7 @@ auto is_emummc() -> bool {
     return (paths.unk[0] != '\0') || (paths.nintendo[0] != '\0');
 }
 
-void patcher(Handle handle, std::span<const u8> data, u64 addr, std::span<Patterns> patterns) {
+void patcher(Handle handle, const u8* data, size_t data_size, u64 addr, std::span<Patterns> patterns) {
     for (auto& p : patterns) {
         // skip if disabled (controller by config.ini)
         if (p.result == PatchResult::DISABLED) {
@@ -336,8 +336,8 @@ void patcher(Handle handle, std::span<const u8> data, u64 addr, std::span<Patter
             continue;
         }
 
-        for (u32 i = 0; i < data.size(); i++) {
-            if (i + p.byte_pattern.size >= data.size()) {
+        for (u32 i = 0; i < data_size; i++) {
+            if (i + p.byte_pattern.size >= data_size) {
                 break;
             }
 
@@ -356,22 +356,22 @@ void patcher(Handle handle, std::span<const u8> data, u64 addr, std::span<Patter
                 // fetch the instruction
                 u32 inst{};
                 const auto inst_offset = i + p.inst_offset;
-                std::memcpy(&inst, data.data() + inst_offset, sizeof(inst));
+                std::memcpy(&inst, data + inst_offset, sizeof(inst));
 
                 // check if the instruction is the one that we want
                 if (p.cond(inst)) {
-                    const auto [patch_data, patch_size] = p.patch(inst);
+                    const auto patch_data = p.patch(inst);
                     const auto patch_offset = addr + inst_offset + p.patch_offset;
 
                     // todo: log failed writes, although this should in theory never fail
-                    if (R_FAILED(svcWriteDebugProcessMemory(handle, &patch_data, patch_offset, patch_size))) {
+                    if (R_FAILED(svcWriteDebugProcessMemory(handle, &patch_data, patch_offset, patch_data.size))) {
                         p.result = PatchResult::FAILED_WRITE;
                     } else {
                         p.result = PatchResult::PATCHED_SYSPATCH;
                     }
                     // move onto next pattern
                     break;
-                } else if (p.applied(data.data() + inst_offset + p.patch_offset, inst)) {
+                } else if (p.applied(data + inst_offset + p.patch_offset, inst)) {
                     // patch already applied by sigpatches
                     p.result = PatchResult::PATCHED_FILE;
                     break;
@@ -434,12 +434,14 @@ auto apply_patch(PatchEntry& patch) -> bool {
                     if (R_FAILED(svcReadDebugProcessMemory(buffer + overlap_size, handle, mem_info.addr + sz, actual_size))) {
                         break;
                     } else {
-                        patcher(handle, std::span{buffer, actual_size + overlap_size}, mem_info.addr + sz - overlap_size, patch.patterns);
+                        patcher(handle, buffer, actual_size + overlap_size, mem_info.addr + sz - overlap_size, patch.patterns);
                         if (actual_size >= overlap_size) {
-                            memcpy(buffer, buffer + actual_size, overlap_size);
+                            memcpy(buffer, buffer + READ_BUFFER_SIZE, overlap_size);
                             std::memset(buffer + overlap_size, 0, READ_BUFFER_SIZE);
                         } else {
-                            std::memset(buffer, 0, sizeof(buffer));
+                            const auto bytes_to_overlap = std::min<u64>(overlap_size, actual_size);
+                            memcpy(buffer, buffer + READ_BUFFER_SIZE + (actual_size - bytes_to_overlap), bytes_to_overlap);
+                            std::memset(buffer + bytes_to_overlap, 0, sizeof(buffer) - bytes_to_overlap);
                         }
                     }
                 }
