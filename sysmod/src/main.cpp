@@ -244,49 +244,49 @@ constexpr auto ctest_applied(const u8* data, u32 inst) -> bool {
 // designing new patterns should ideally conform to specification above.
 
 constinit Patterns fs_patterns[] = {
-    { "noacidsigchk_1.0.0-9.2.0", "0xC8FE4739", -24, 0, bl_cond, ret0_patch, ret0_applied, true, FW_VER_ANY, MAKEHOSVERSION(9,2,0) }, // moved to loader 10.0.0
-    { "noacidsigchk_1.0.0-9.2.0", "0x0210911F000072", -5, 0, bl_cond, ret0_patch, ret0_applied, true, FW_VER_ANY, MAKEHOSVERSION(9,2,0) }, // moved to loader 10.0.0
-    { "noncasigchk_1.0.0-3.0.2", "0x88..42..58", -4, 0, tbz_cond, nop_patch, nop_applied, true, MAKEHOSVERSION(1,0,0), MAKEHOSVERSION(3,0,2) },
-    { "noncasigchk_4.0.0-16.1.0", "0x1E4839....00......0054", -17, 0, tbz_cond, nop_patch, nop_applied, true, MAKEHOSVERSION(4,0,0), MAKEHOSVERSION(16,1,0) },
-    { "noncasigchk_17.0.0+", "0x0694....00..42..0091", -18, 0, tbz_cond, nop_patch, nop_applied, true, MAKEHOSVERSION(17,0,0), FW_VER_ANY },
-    { "nocntchk_1.0.0-18.1.0", "0x40F9........081C00121F05", 2, 0, bl_cond, ret0_patch, ret0_applied, true, MAKEHOSVERSION(1,0,0), MAKEHOSVERSION(18,1,0) },
-    { "nocntchk_19.0.0+", "0x40F9............40B9091C", 2, 0, bl_cond, ret0_patch, ret0_applied, true, MAKEHOSVERSION(19,0,0), FW_VER_ANY },
+    { "关闭ACID签名验证_1.0.0-9.2.0", "0xC8FE4739", -24, 0, bl_cond, ret0_patch, ret0_applied, true, FW_VER_ANY, MAKEHOSVERSION(9,2,0) }, // moved to loader 10.0.0
+    { "关闭ACID签名验证_1.0.0-9.2.0", "0x0210911F000072", -5, 0, bl_cond, ret0_patch, ret0_applied, true, FW_VER_ANY, MAKEHOSVERSION(9,2,0) }, // moved to loader 10.0.0
+    { "关闭ACID签名验证_1.0.0-3.0.2", "0x88..42..58", -4, 0, tbz_cond, nop_patch, nop_applied, true, MAKEHOSVERSION(1,0,0), MAKEHOSVERSION(3,0,2) },
+    { "关闭ACID签名验证_4.0.0-16.1.0", "0x1E4839....00......0054", -17, 0, tbz_cond, nop_patch, nop_applied, true, MAKEHOSVERSION(4,0,0), MAKEHOSVERSION(16,1,0) },
+    { "关闭CNT验证_17.0.0+", "0x0694....00..42..0091", -18, 0, tbz_cond, nop_patch, nop_applied, true, MAKEHOSVERSION(17,0,0), FW_VER_ANY },
+    { "关闭CNT验证_1.0.0-18.1.0", "0x40F9........081C00121F05", 2, 0, bl_cond, ret0_patch, ret0_applied, true, MAKEHOSVERSION(1,0,0), MAKEHOSVERSION(18,1,0) },
+    { "关闭CNT验证_19.0.0+", "0x40F9............40B9091C", 2, 0, bl_cond, ret0_patch, ret0_applied, true, MAKEHOSVERSION(19,0,0), FW_VER_ANY },
 };
 
 constinit Patterns ldr_patterns[] = {
-    { "noacidsigchk_10.0.0+", "0x009401C0BE121F00", 6, 2, cmp_cond, cmp_patch, cmp_applied, true, FW_VER_ANY }, // 1F00016B - cmp w0, w1 patched to 1F00006B - cmp w0, w0
+    { "关闭ACID签名验证_10.0.0+", "0x009401C0BE121F00", 6, 2, cmp_cond, cmp_patch, cmp_applied, true, FW_VER_ANY }, // 1F00016B - cmp w0, w1 patched to 1F00006B - cmp w0, w0
 };
 
 constinit Patterns erpt_patterns[] = {
-    { "no_erpt", "0xFD7B02A9FD830091F76305A9", -4, 0, sub_cond, mov0_ret_patch, mov0_ret_applied, true, FW_VER_ANY }, // FF4305D1 - sub sp, sp, #0x150 patched to E0031F2AC0035FD6 - mov w0, wzr, ret 
+    { "关闭错误报告", "0xFD7B02A9FD830091F76305A9", -4, 0, sub_cond, mov0_ret_patch, mov0_ret_applied, true, FW_VER_ANY }, // FF4305D1 - sub sp, sp, #0x150 patched to E0031F2AC0035FD6 - mov w0, wzr, ret 
 };
 
 constinit Patterns es_patterns[] = {
-    { "es_1.0.0-8.1.1", "0x0091....0094..7E4092", 10, 0, es_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(1,0,0), MAKEHOSVERSION(8,1,1) },
-    { "es_9.0.0-11.0.1", "0x00..........A0....D1....FF97", 14, 0, es_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(9,0,0), MAKEHOSVERSION(11,0,1) },
-    { "es_12.0.0-18.1.0", "0x02........D2..52....0091", 32, 0, es_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(12,0,0), MAKEHOSVERSION(18,1,0) },
-    { "es_19.0.0-21.2.0", "0xA1........031F2A....0091", 32, 0, es_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(19,0,0), MAKEHOSVERSION(21,2,0) },
-    { "es_22.0.0+", "0xA0630091....FE97A08300D1....FE97", 16, 0, es_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(22,0,0), FW_VER_ANY },
+    { "加密服务_1.0.0-8.1.1", "0x0091....0094..7E4092", 10, 0, es_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(1,0,0), MAKEHOSVERSION(8,1,1) },
+    { "加密服务_9.0.0-11.0.1", "0x00..........A0....D1....FF97", 14, 0, es_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(9,0,0), MAKEHOSVERSION(11,0,1) },
+    { "加密服务_12.0.0-18.1.0", "0x02........D2..52....0091", 32, 0, es_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(12,0,0), MAKEHOSVERSION(18,1,0) },
+    { "加密服务_19.0.0-21.2.0", "0xA1........031F2A....0091", 32, 0, es_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(19,0,0), MAKEHOSVERSION(21,2,0) },
+    { "加密服务_22.0.0+", "0xA0630091....FE97A08300D1....FE97", 16, 0, es_cond, mov0_patch, mov0_applied, true, MAKEHOSVERSION(22,0,0), FW_VER_ANY },
 };
 
 constinit Patterns olsc_patterns[] = {
-    { "olsc_6.0.0-14.1.2", "0x00..73....F9....4039", 42, 0, bl_cond, ret1_patch, ret1_applied, true, MAKEHOSVERSION(6,0,0), MAKEHOSVERSION(14,1,2) },
-    { "olsc_15.0.0-18.1.0", "0x00..73....F9....4039", 38, 0, bl_cond, ret1_patch, ret1_applied, true, MAKEHOSVERSION(15,0,0), MAKEHOSVERSION(18,1,0) },
-    { "olsc_19.0.0+", "0x00..73....F9....4039", 42, 0, bl_cond, ret1_patch, ret1_applied, true, MAKEHOSVERSION(19,0,0), FW_VER_ANY },
+    { "模拟OLSC服务_6.0.0-14.1.2", "0x00..73....F9....4039", 42, 0, bl_cond, ret1_patch, ret1_applied, true, MAKEHOSVERSION(6,0,0), MAKEHOSVERSION(14,1,2) },
+    { "模拟OLSC服务_15.0.0-18.1.0", "0x00..73....F9....4039", 38, 0, bl_cond, ret1_patch, ret1_applied, true, MAKEHOSVERSION(15,0,0), MAKEHOSVERSION(18,1,0) },
+    { "模拟OLSC服务_19.0.0+", "0x00..73....F9....4039", 42, 0, bl_cond, ret1_patch, ret1_applied, true, MAKEHOSVERSION(19,0,0), FW_VER_ANY },
 };
 
 constinit Patterns nifm_patterns[] = {
-    { "ctest_1.0.0-19.0.1", "0x03..AAE003..AA......39....04F8........E0", -29, 0, ctest_cond, ctest_patch, ctest_applied, true, FW_VER_ANY, MAKEHOSVERSION(19,0,1) },
-    { "ctest_20.0.0+", "0x03..AA......AA..................0314AA....14AA", -17, 0, ctest_cond, ctest_patch, ctest_applied, true, MAKEHOSVERSION(20,0,0), FW_VER_ANY },
+    { "连接测试_1.0.0-19.0.1", "0x03..AAE003..AA......39....04F8........E0", -29, 0, ctest_cond, ctest_patch, ctest_applied, true, FW_VER_ANY, MAKEHOSVERSION(19,0,1) },
+    { "连接测试_20.0.0+", "0x03..AA......AA..................0314AA....14AA", -17, 0, ctest_cond, ctest_patch, ctest_applied, true, MAKEHOSVERSION(20,0,0), FW_VER_ANY },
 };
 
 constinit Patterns nim_patterns[] = {
-    { "blankcal0crashfix_17.0.0+", "0x00351F2003D5..............................97....0094....00..........61", 6, 0, adr_cond, mov2_patch, mov2_applied, true, MAKEHOSVERSION(17,0,0), FW_VER_ANY },
-    { "blockfirmwareupdates_1.0.0-5.1.0", "0x1139F3", -30, 0, block_fw_updates_cond, mov0_ret_patch, mov0_ret_applied, true, MAKEHOSVERSION(1,0,0), MAKEHOSVERSION(5,1,0) },
-    { "blockfirmwareupdates_6.0.0-6.2.0", "0xF30301AA..4E", -40, 0, block_fw_updates_cond, mov0_ret_patch, mov0_ret_applied, true, MAKEHOSVERSION(6,0,0), MAKEHOSVERSION(6,2,0) },
-    { "blockfirmwareupdates_7.0.0-10.2.0", "0xF30301AA014C", -36, 0, block_fw_updates_cond, mov0_ret_patch, mov0_ret_applied, true, MAKEHOSVERSION(7,0,0), MAKEHOSVERSION(10,2,0) },
-    { "blockfirmwareupdates_11.0.0-11.0.1", "0x9AF0....................C0035FD6", 16, 0, block_fw_updates_cond, mov0_ret_patch, mov0_ret_applied, true, MAKEHOSVERSION(11,0,0), MAKEHOSVERSION(11,0,1) },
-    { "blockfirmwareupdates_12.0.0+", "0x41....4C............C0035FD6", 14, 0, block_fw_updates_cond, mov0_ret_patch, mov0_ret_applied, true, MAKEHOSVERSION(12,0,0), FW_VER_ANY },
+    { "空白校准崩溃修复_17.0.0+", "0x00351F2003D5..............................97....0094....00..........61", 6, 0, adr_cond, mov2_patch, mov2_applied, true, MAKEHOSVERSION(17,0,0), FW_VER_ANY },
+    { "锁定固件更新_1.0.0-5.1.0", "0x1139F3", -30, 0, block_fw_updates_cond, mov0_ret_patch, mov0_ret_applied, true, MAKEHOSVERSION(1,0,0), MAKEHOSVERSION(5,1,0) },
+    { "锁定固件更新_6.0.0-6.2.0", "0xF30301AA..4E", -40, 0, block_fw_updates_cond, mov0_ret_patch, mov0_ret_applied, true, MAKEHOSVERSION(6,0,0), MAKEHOSVERSION(6,2,0) },
+    { "锁定固件更新_7.0.0-10.2.0", "0xF30301AA014C", -36, 0, block_fw_updates_cond, mov0_ret_patch, mov0_ret_applied, true, MAKEHOSVERSION(7,0,0), MAKEHOSVERSION(10,2,0) },
+    { "锁定固件更新_11.0.0-11.0.1", "0x9AF0....................C0035FD6", 16, 0, block_fw_updates_cond, mov0_ret_patch, mov0_ret_applied, true, MAKEHOSVERSION(11,0,0), MAKEHOSVERSION(11,0,1) },
+    { "锁定固件更新_12.0.0+", "0x41....4C............C0035FD6", 14, 0, block_fw_updates_cond, mov0_ret_patch, mov0_ret_applied, true, MAKEHOSVERSION(12,0,0), FW_VER_ANY },
 };
 
 // NOTE: add system titles that you want to be patched to this table.
@@ -495,12 +495,12 @@ auto ini_load_or_write_default(const char* section, const char* key, long _defau
 
 auto patch_result_to_str(PatchResult result) -> const char* {
     switch (result) {
-        case PatchResult::NOT_FOUND: return "Unpatched";
-        case PatchResult::SKIPPED: return "Skipped";
-        case PatchResult::DISABLED: return "Disabled";
-        case PatchResult::PATCHED_FILE: return "Patched (file)";
-        case PatchResult::PATCHED_SYSPATCH: return "Patched (sys-patch)";
-        case PatchResult::FAILED_WRITE: return "Failed (svcWriteDebugProcessMemory)";
+        case PatchResult::NOT_FOUND: return "未修补";
+        case PatchResult::SKIPPED: return "已跳过";
+        case PatchResult::DISABLED: return "已禁用";
+        case PatchResult::PATCHED_FILE: return "已修补（文件）";
+        case PatchResult::PATCHED_SYSPATCH: return "已修补（系统补丁）";
+        case PatchResult::FAILED_WRITE: return "失败（内存写入错误）";
     }
 
     std::unreachable();
@@ -665,17 +665,18 @@ int main(int argc, char* argv[]) {
         // defined in the Makefile
         #define DATE (DATE_DAY "." DATE_MONTH "." DATE_YEAR " " DATE_HOUR ":" DATE_MIN ":" DATE_SEC)
 
-        ini_puts("stats", "version", VERSION_WITH_HASH, log_path);
-        ini_puts("stats", "build_date", DATE, log_path);
-        ini_puts("stats", "fw_version", fw_version, log_path);
-        ini_puts("stats", "ams_version", ams_version, log_path);
-        ini_puts("stats", "ams_target_version", ams_target_version, log_path);
-        ini_puts("stats", "ams_keygen", ams_keygen, log_path);
-        ini_puts("stats", "ams_hash", ams_hash, log_path);
-        ini_putl("stats", "is_emummc", emummc, log_path);
-        ini_putl("stats", "heap_size", INNER_HEAP_SIZE, log_path);
-        ini_putl("stats", "buffer_size", READ_BUFFER_SIZE, log_path);
-        ini_puts("stats", "patch_time", patch_time, log_path);
+        ini_puts("stats", "版本", VERSION_WITH_HASH, log_path);
+        ini_puts("stats", "编译日期", DATE, log_path);
+        ini_puts("stats", "固件版本", fw_version, log_path);
+        ini_puts("stats", "大气层版本", ams_version, log_path);
+        ini_puts("stats", "大气层目标版本", ams_target_version, log_path);
+        ini_puts("stats", "大气层密钥版本", ams_keygen, log_path);
+        ini_puts("stats", "大气层哈希值", ams_hash, log_path);
+        ini_putl("stats", "是否为虚拟系统", emummc, log_path);
+        ini_putl("stats", "堆大小", INNER_HEAP_SIZE, log_path);
+        ini_putl("stats", "缓冲区大小", READ_BUFFER_SIZE, log_path);
+        ini_puts("stats", "修补用时", patch_time, log_path);
+		ini_puts("stats", "汉化", "gzk_47", log_path);
     }
 
     // note: sysmod exits here.
