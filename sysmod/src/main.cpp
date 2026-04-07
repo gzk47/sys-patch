@@ -597,7 +597,7 @@ int main(int argc, char* argv[]) {
     ini_remove(log_path);
 
     // load options
-    const auto patch_sysmmc = ini_load_or_write_default("options", "patch_sysmmc", 1, ini_path);
+    const auto patch_sysmmc = ini_load_or_write_default("options", "patch_sysmmc", 0, ini_path);
     const auto patch_emummc = ini_load_or_write_default("options", "patch_emummc", 1, ini_path);
     const auto enable_logging = ini_load_or_write_default("options", "enable_logging", 1, ini_path);
     VERSION_SKIP = ini_load_or_write_default("options", "version_skip", 1, ini_path);
