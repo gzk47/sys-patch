@@ -71,14 +71,14 @@ public:
     GuiOptions() { }
 
     tsl::elm::Element* createUI() override {
-        auto frame = new tsl::elm::OverlayFrame("sys-patch", VERSION_WITH_HASH);
+        auto frame = new tsl::elm::OverlayFrame("系统补丁", VERSION_WITH_HASH);
         auto list = new tsl::elm::List();
 
-        list->addItem(new tsl::elm::CategoryHeader("Options"));
-        list->addItem(config_patch_sysmmc.create_list_item("Patch sysMMC"));
-        list->addItem(config_patch_emummc.create_list_item("Patch emuMMC"));
-        list->addItem(config_logging.create_list_item("Logging"));
-        list->addItem(config_version_skip.create_list_item("Version skip"));
+        list->addItem(new tsl::elm::CategoryHeader("选项"));
+        list->addItem(config_patch_sysmmc.create_list_item("修补 真实系统"));
+        list->addItem(config_patch_emummc.create_list_item("修补 虚拟系统"));
+        list->addItem(config_logging.create_list_item("启用日志记录"));
+        list->addItem(config_version_skip.create_list_item("跳过版本检测"));
 
         frame->setContent(list);
         return frame;
@@ -95,47 +95,50 @@ public:
     GuiToggle() { }
 
     tsl::elm::Element* createUI() override {
-        auto frame = new tsl::elm::OverlayFrame("sys-patch", VERSION_WITH_HASH);
+        auto frame = new tsl::elm::OverlayFrame("系统补丁", VERSION_WITH_HASH);
         auto list = new tsl::elm::List();
 
-        list->addItem(new tsl::elm::CategoryHeader("FS - 0100000000000000"));
-        list->addItem(config_noacidsigchk1.create_list_item("noacidsigchk_1.0.0-9.2.0"));
-        list->addItem(config_noacidsigchk2.create_list_item("noacidsigchk_1.0.0-9.2.0"));
-        list->addItem(config_noncasigchk1.create_list_item("noncasigchk_1.0.0-3.0.2"));
-        list->addItem(config_noncasigchk2.create_list_item("noncasigchk_4.0.0-16.1.0"));
-        list->addItem(config_noncasigchk3.create_list_item("noncasigchk_17.0.0+"));
-        list->addItem(config_nocntchk1.create_list_item("nocntchk_1.0.0-18.1.0"));
-        list->addItem(config_nocntchk2.create_list_item("nocntchk_19.0.0+"));
+        list->addItem(new tsl::elm::CategoryHeader("文件系统(FS) - 0100000000000000"));
+        list->addItem(config_noacidsigchk1.create_list_item("跳过ACID签名校验_1.0.0-9.2.0"));
+        list->addItem(config_noacidsigchk2.create_list_item("跳过ACID签名校验_1.0.0-9.2.0"));
+        list->addItem(config_noncasigchk1.create_list_item("跳过NCA签名校验_1.0.0-3.0.2"));
+        list->addItem(config_noncasigchk2.create_list_item("跳过NCA签名校验_4.0.0-16.1.0"));
+        list->addItem(config_noncasigchk3.create_list_item("跳过NCA签名校验_17.0.0+"));
+        list->addItem(config_nocntchk1.create_list_item("跳过CNT校验_1.0.0-18.1.0"));
+        list->addItem(config_nocntchk2.create_list_item("跳过CNT校验_19.0.0+"));
 
-        list->addItem(new tsl::elm::CategoryHeader("LDR - 0100000000000001"));
-        list->addItem(config_noacidsigchk4.create_list_item("noacidsigchk_10.0.0+"));
+        list->addItem(new tsl::elm::CategoryHeader("加载器(LDR) - 0100000000000001"));
+        list->addItem(config_noacidsigchk4.create_list_item("跳过ACID签名校验_10.0.0+"));
 
-        list->addItem(new tsl::elm::CategoryHeader("ERPT - 010000000000002B"));
-        list->addItem(config_no_erpt.create_list_item("no_erpt"));
+        list->addItem(new tsl::elm::CategoryHeader("错误报告(ERPT) - 010000000000002B"));
+        list->addItem(config_no_erpt.create_list_item("禁用错误上报服务"));
 
-        list->addItem(new tsl::elm::CategoryHeader("ES - 0100000000000033"));
-        list->addItem(config_es1.create_list_item("es_1.0.0-8.1.1"));
-        list->addItem(config_es2.create_list_item("es_9.0.0-11.0.1"));
-        list->addItem(config_es3.create_list_item("es_12.0.0-18.1.0"));
-        list->addItem(config_es4.create_list_item("es_19.0.0-21.2.0"));
-        list->addItem(config_es5.create_list_item("es_22.0.0+"));
+        list->addItem(new tsl::elm::CategoryHeader("加密服务(ES) - 0100000000000033"));
+        list->addItem(config_es1.create_list_item("加密服务补丁_1.0.0-8.1.1"));
+        list->addItem(config_es2.create_list_item("加密服务补丁_9.0.0-11.0.1"));
+        list->addItem(config_es3.create_list_item("加密服务补丁_12.0.0-18.1.0"));
+        list->addItem(config_es4.create_list_item("加密服务补丁_19.0.0-21.2.0"));
+        list->addItem(config_es5.create_list_item("加密服务补丁_22.0.0+"));
 
-        list->addItem(new tsl::elm::CategoryHeader("OLSC - 010000000000003E"));
-        list->addItem(config_olsc1.create_list_item("olsc_6.0.0-14.1.2"));
-        list->addItem(config_olsc2.create_list_item("olsc_15.0.0-18.1.0"));
-        list->addItem(config_olsc3.create_list_item("olsc_19.0.0+"));
+        list->addItem(new tsl::elm::CategoryHeader("应用管理(AM) - 0100000000000023"));
+        list->addItem(config_am1.create_list_item("自制软件运行修复 22.0.0+"));
 
-        list->addItem(new tsl::elm::CategoryHeader("NIFM - 010000000000000F"));
-        list->addItem(config_ctest1.create_list_item("ctest_1.0.0-19.0.1"));
-        list->addItem(config_ctest2.create_list_item("ctest_20.0.0+"));
+        list->addItem(new tsl::elm::CategoryHeader("在线服务(OLSC) - 010000000000003E"));
+        list->addItem(config_olsc1.create_list_item("在线服务补丁_6.0.0-14.1.2"));
+        list->addItem(config_olsc2.create_list_item("在线服务补丁_15.0.0-18.1.0"));
+        list->addItem(config_olsc3.create_list_item("在线服务补丁_19.0.0+"));
 
-        list->addItem(new tsl::elm::CategoryHeader("NIM - 0100000000000025"));
-        list->addItem(config_nim1.create_list_item("blankcal0crashfix_17.0.0+"));
-        list->addItem(config_nim_fw1.create_list_item("blockfirmwareupdates_1.0.0-5.1.0"));
-        list->addItem(config_nim_fw2.create_list_item("blockfirmwareupdates_6.0.0-6.2.0"));
-		list->addItem(config_nim_fw3.create_list_item("blockfirmwareupdates_7.0.0-10.2.0"));
-        list->addItem(config_nim_fw4.create_list_item("blockfirmwareupdates_11.0.0-11.0.1"));
-        list->addItem(config_nim_fw5.create_list_item("blockfirmwareupdates_12.0.0+"));
+        list->addItem(new tsl::elm::CategoryHeader("网络服务(NIFM) - 010000000000000F"));
+        list->addItem(config_ctest1.create_list_item("网络连接校验_1.0.0-19.0.1"));
+        list->addItem(config_ctest2.create_list_item("网络连接校验_20.0.0+"));
+
+        list->addItem(new tsl::elm::CategoryHeader("网络安装(NIM) - 0100000000000025"));
+        list->addItem(config_nim1.create_list_item("修复Cal0空白崩溃_17.0.0+"));
+        list->addItem(config_nim_fw1.create_list_item("屏蔽系统更新_1.0.0-5.1.0"));
+        list->addItem(config_nim_fw2.create_list_item("屏蔽系统更新_6.0.0-6.2.0"));
+		list->addItem(config_nim_fw3.create_list_item("屏蔽系统更新_7.0.0-10.2.0"));
+        list->addItem(config_nim_fw4.create_list_item("屏蔽系统更新_11.0.0-11.0.1"));
+        list->addItem(config_nim_fw5.create_list_item("屏蔽系统更新_12.0.0+"));
 
         frame->setContent(list);
         return frame;
@@ -155,6 +158,7 @@ public:
     ConfigEntry config_es3{"es", "es_12.0.0-18.1.0", true};
     ConfigEntry config_es4{"es", "es_19.0.0-21.2.0", true};
     ConfigEntry config_es5{"es", "es_22.0.0+", true};
+    ConfigEntry config_am1{"am", "am_homebrew_fix_22.0.0+", true};
     ConfigEntry config_olsc1{"olsc", "olsc_6.0.0-14.1.2", true};
     ConfigEntry config_olsc2{"olsc", "olsc_15.0.0-18.1.0", true};
     ConfigEntry config_olsc3{"olsc", "olsc_19.0.0+", true};
@@ -173,7 +177,7 @@ public:
     GuiLog() { }
 
     tsl::elm::Element* createUI() override {
-        auto frame = new tsl::elm::OverlayFrame("sys-patch", VERSION_WITH_HASH);
+        auto frame = new tsl::elm::OverlayFrame("系统补丁", VERSION_WITH_HASH);
         auto list = new tsl::elm::List();
 
         if (does_file_exist(LOG_PATH)) {
@@ -186,13 +190,13 @@ public:
                 auto user = (CallbackUser*)UserData;
                 std::string_view value{Value};
 
-                if (value == "Skipped") {
+                if (value == "已跳过") {
                     return 1;
                 }
 
                 if (user->last_section != Section) {
                     user->last_section = Section;
-                    user->list->addItem(new tsl::elm::CategoryHeader("Log: " + user->last_section));
+                    user->list->addItem(new tsl::elm::CategoryHeader("日志：" + user->last_section));
                 }
 
                 #define F(x) ((x) >> 4) // 8bit -> 4bit
@@ -201,11 +205,11 @@ public:
                 constexpr tsl::Color colour_unpatched{F(250), F(90), F(58), F(255)};
                 #undef F
 
-                if (value.starts_with("Patched")) {
+                if (value.starts_with("已修补")) {
                     auto *item = new tsl::elm::ListItem(Key);
-                    item->setValue("Patched", true);
+                    item->setValue("已修补", true);
                     user->list->addItem(item);
-                } else if (value.starts_with("Unpatched") || value.starts_with("Disabled")) {
+                } else if (value.starts_with("未修补") || value.starts_with("已禁用")) {
                     auto *item = new tsl::elm::ListItem(Key);
                     item->setValue(Value, true);
                     user->list->addItem(item);
@@ -222,7 +226,7 @@ public:
                 return 1;
             }, &callback_userdata, LOG_PATH);
         } else {
-            list->addItem(new tsl::elm::ListItem("No log found!"));
+            list->addItem(new tsl::elm::ListItem("未找到日志！"));
         }
 
         frame->setContent(list);
@@ -235,12 +239,12 @@ public:
     GuiMain() { }
 
     tsl::elm::Element* createUI() override {
-        auto frame = new tsl::elm::OverlayFrame("sys-patch", VERSION_WITH_HASH);
+        auto frame = new tsl::elm::OverlayFrame("系统补丁", VERSION_WITH_HASH);
         auto list = new tsl::elm::List();
 
-        auto options = new tsl::elm::ListItem("Options");
-        auto toggle = new tsl::elm::ListItem("Toggle patches");
-        auto log = new tsl::elm::ListItem("Log");
+        auto options = new tsl::elm::ListItem("设置选项");
+        auto toggle = new tsl::elm::ListItem("补丁开关");
+        auto log = new tsl::elm::ListItem("日志查看");
 
         options->setClickListener([](u64 keys) -> bool {
             if (keys & HidNpadButton_A) {
@@ -266,7 +270,7 @@ public:
             return false;
         });
 
-        list->addItem(new tsl::elm::CategoryHeader("Menu"));
+        list->addItem(new tsl::elm::CategoryHeader("菜单"));
         list->addItem(options);
         list->addItem(toggle);
         list->addItem(log);
