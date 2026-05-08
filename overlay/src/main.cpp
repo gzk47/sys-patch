@@ -218,9 +218,12 @@ public:
         list->addItem(config_nim1.create_list_item("blankcal0crashfix_17.0.0+"));
         list->addItem(config_nim_fw1.create_list_item("blockfirmwareupdates_1.0.0-5.1.0"));
         list->addItem(config_nim_fw2.create_list_item("blockfirmwareupdates_6.0.0-6.2.0"));
-		list->addItem(config_nim_fw3.create_list_item("blockfirmwareupdates_7.0.0-10.2.0"));
+        list->addItem(config_nim_fw3.create_list_item("blockfirmwareupdates_7.0.0-10.2.0"));
         list->addItem(config_nim_fw4.create_list_item("blockfirmwareupdates_11.0.0-11.0.1"));
         list->addItem(config_nim_fw5.create_list_item("blockfirmwareupdates_12.0.0+"));
+
+        list->addItem(new tsl::elm::CategoryHeader("NS - 010000000000001F"));
+        list->addItem(config_ns1.create_list_item("force_gamecard_region_to_global"));
 
         frame->setContent(list);
         return frame;
@@ -252,6 +255,7 @@ public:
     ConfigEntry config_nim_fw3{"nim", "blockfirmwareupdates_7.0.0-10.2.0", true};
     ConfigEntry config_nim_fw4{"nim", "blockfirmwareupdates_11.0.0-11.0.1", true};
     ConfigEntry config_nim_fw5{"nim", "blockfirmwareupdates_12.0.0+", true};
+    ConfigEntry config_ns1{"ns", "force_gamecard_region_to_global", true};
 };
 
 class GuiLog final : public tsl::Gui {

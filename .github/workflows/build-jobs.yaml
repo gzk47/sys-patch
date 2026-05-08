@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-tags: true
         path: sys-patch
@@ -35,7 +35,7 @@ jobs:
         echo "SHA256=${SHA256}" >> $GITHUB_ENV
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         include-hidden-files: true
         overwrite: true
