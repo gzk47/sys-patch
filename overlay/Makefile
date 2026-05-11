@@ -40,6 +40,7 @@ include $(DEVKITPRO)/libnx/switch_rules
 APP_TITLE	:=	sys-patch
 APP_AUTHOR	:=	TotalJustice
 APP_VERSION :=	$(VERSION_DIRTY)
+APP_VERSION :=	v$(APP_VERSION)-$(shell git rev-parse --short=7 HEAD)
 
 TARGET		:=	sys-patch-overlay
 BUILD		:=	build

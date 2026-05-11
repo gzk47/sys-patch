@@ -571,12 +571,12 @@ auto ini_load_or_write_default(const char* section, const char* key, long _defau
 
 auto patch_result_to_str(PatchResult result) -> const char* {
     switch (result) {
-        case PatchResult::NOT_FOUND: return "Unpatched";
-        case PatchResult::SKIPPED: return "Skipped";
-        case PatchResult::DISABLED: return "Disabled";
-        case PatchResult::PATCHED_FILE: return "Patched (file)";
-        case PatchResult::PATCHED_SYSPATCH: return "Patched (sys-patch)";
-        case PatchResult::FAILED_WRITE: return "Failed (svcWriteDebugProcessMemory)";
+        case PatchResult::NOT_FOUND: return "未修补";
+        case PatchResult::SKIPPED: return "已跳过";
+        case PatchResult::DISABLED: return "已禁用";
+        case PatchResult::PATCHED_FILE: return "已修补 (文件)";
+        case PatchResult::PATCHED_SYSPATCH: return "已修补 (系统补丁)";
+        case PatchResult::FAILED_WRITE: return "失败 (内存写入错误)";
     }
 
     std::unreachable();
@@ -776,17 +776,18 @@ int main(int argc, char* argv[]) {
         // defined in the Makefile
         #define DATE (DATE_DAY "." DATE_MONTH "." DATE_YEAR " " DATE_HOUR ":" DATE_MIN ":" DATE_SEC)
 
-        ini_puts("stats", "version", VERSION_WITH_HASH, log_path);
-        ini_puts("stats", "build_date", DATE, log_path);
-        ini_puts("stats", "fw_version", fw_version, log_path);
-        ini_puts("stats", "ams_version", ams_version, log_path);
-        ini_puts("stats", "ams_target_version", ams_target_version, log_path);
-        ini_puts("stats", "ams_keygen", ams_keygen, log_path);
-        ini_puts("stats", "ams_hash", ams_hash, log_path);
-        ini_putl("stats", "is_emummc", emummc, log_path);
-        ini_putl("stats", "heap_size", INNER_HEAP_SIZE, log_path);
-        ini_putl("stats", "buffer_size", READ_BUFFER_SIZE, log_path);
-        ini_puts("stats", "patch_time", patch_time, log_path);
+        ini_puts("stats", "版本", VERSION_WITH_HASH, log_path);
+        ini_puts("stats", "编译时间", DATE, log_path);
+        ini_puts("stats", "系统版本", fw_version, log_path);
+        ini_puts("stats", "大气层版本", ams_version, log_path);
+        ini_puts("stats", "大气层目标版本", ams_target_version, log_path);
+        ini_puts("stats", "大气层密钥", ams_keygen, log_path);
+        ini_puts("stats", "大气层哈希", ams_hash, log_path);
+        ini_putl("stats", "是否为虚拟系统", emummc, log_path);
+        ini_putl("stats", "堆内存大小", INNER_HEAP_SIZE, log_path);
+        ini_putl("stats", "缓存大小", READ_BUFFER_SIZE, log_path);
+        ini_puts("stats", "修补耗时", patch_time, log_path);
+		ini_puts("stats", "汉化", "gzk_47", log_path);
     }
 
     // note: sysmod exits here.
