@@ -294,7 +294,7 @@ public:
 
                 if (status.starts_with("已修补")) {
                     const auto is_sys_patch = status.ends_with("(系统补丁)");
-                    const auto display_value = detail.empty() ? std::string{"已修补"} : "已修补@" + detail;
+                    const auto display_value = detail.empty() ? std::string{"已修补"} : "已修补";
                     user->list->addItem(new ColouredListItem(
                         Key,
                         display_value,
