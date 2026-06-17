@@ -273,7 +273,7 @@ constinit Patterns ldr_patterns[] = {
 };
 
 constinit Patterns erpt_patterns[] = {
-    { "no_erpt", "0xFD7B02A9FD830091F76305A9", -4, 0, sub_cond, mov0_ret_patch, mov0_ret_applied, true, 0, FW_VER_ANY }, // FF4305D1 - sub sp, sp, #0x150 patched to E0031F2AC0035FD6 - mov w0, wzr, ret 
+    { "no_erpt", "0xFD7B02A9FD830091F55B04A9", -4, 0, sub_cond, mov0_ret_patch, mov0_ret_applied, true, 0, FW_VER_ANY }, // FF4305D1 - sub sp, sp, #0x150 patched to E0031F2AC0035FD6 - mov w0, wzr, ret 
 };
 
 constinit Patterns es_patterns[] = {
